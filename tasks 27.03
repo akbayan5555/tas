@@ -1,0 +1,114 @@
+//1 example
+interface Animal {
+    public void animalSound();
+    public void sleep();
+}
+class Cat implements Animal {
+    public void animalSound() {
+        System.out.println("The cat says: mya mya");
+    }
+    public void sleep() {
+        System.out.println("PrPr");
+    }
+}
+class Main {
+    public static void main(String[] args) {
+        Cat myCat = new Cat();
+        myCat.animalSound();
+        myCat.sleep();
+    }
+}
+//2 example
+import java.util.Scanner;
+class MyClass {
+    public static void main(String[] args) {
+        Scanner myObj = new Scanner(System.in);
+        System.out.println("Enter your name: ");
+
+        String name = myObj.nextLine();
+        System.out.println("Name: " + name);
+    }
+}
+
+//Реализуйте алгоритм сортировки пузырьком для сортировки массива
+public class BubbleSort {
+    public static void main(String[] args) {
+        double[] array = {64, 34, 25, 12, 22, 11, 90};
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    double temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+        System.out.println("Array:");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+    }
+}
+
+//Дан массив целых чисел и ещё одно целое число. Удалите все вхождения этого числа из массива
+import java.util.Arrays;
+public class Array {
+    public static void main(String[] args) {
+        int test_array[] = {0, 1, 2, 2, 3, 0, 4, 2};
+        System.out.println(Arrays.toString(removeElement(test_array, 3)));
+    }
+
+    public static int[] removeElement(int[] nums, int val) {
+        int offset = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == val) {
+                offset++;
+            } else {
+                nums[i - offset] = nums[i];
+            }
+        }
+        return Arrays.copyOf(nums, nums.length - offset);
+    }
+}
+
+//Дан массив целых чисел и ещё одно целое число. Удалите все вхождения этого числа из массива. метод «отрезания хвоста» массива
+import java.util.Arrays;
+public class Array {
+    public static void main(String[] args) {
+        int test_array[] = {0, 1, 2, 2, 3, 0, 4, 2};
+        System.out.println(Arrays.toString(removeElement(test_array, 3)));
+    }
+    public static int[] removeElement(int[] nums, int val) {
+        int offset = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == val) {
+                offset++;
+            } else {
+                nums[i - offset] = nums[i];
+            }
+        }
+        int[] newArray = new int[nums.length - offset];
+        for (int i = 0; i < newArray.length; i++) {
+            newArray[i] = nums[i + offset]; 
+        }
+        return newArray;
+    }
+}
+
+//Напишите программу, которая выводит на консоль простые числа в промежутке от [2, 100].
+//Используйте для решения этой задачи оператор "%" (остаток от деления) и циклы.
+public class PrimeNumbers {
+    public static void main(String[] args) {
+        out_for:
+        for (int i = 2; i <= 100; i++) {
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    continue out_for;
+                }
+            }
+            System.out.println(i);
+        }
+    }
+}
