@@ -16,12 +16,6 @@
         String[] words = originalText.split(" ");
         System.out.println("Split text:");
 
-        for (String word : words) {
-            System.out.println(word);
-        }
-        boolean containsExample = originalText.contains("Example");
-        System.out.println("Contains the word Example: " + containsExample);
-
         String anotherText = "Java is cool";
         boolean areEqual = originalText.equals(anotherText);
         System.out.println("The first text and second text equal. " + areEqual);
@@ -158,7 +152,7 @@ public class Sequens {
         System.out.println(solve(0, 10));
     }
 }
-8.//Напишите метод, который добавляет 1000000 элементов в ArrayList и LinkedList.
+8.//Напишите метод, который добавляет 1000 000 элементов в ArrayList и LinkedList.
 // Напишите еще один метод, который выбирает из заполненного списка элемент наугад 100000 раз. Замерьте время, которое потрачено на это.
 // Сравните результаты и предположите, почему они именно такие.
 import java.util.ArrayList;
