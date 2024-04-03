@@ -1,0 +1,233 @@
+1.public class workingwithtext {
+    public static void main(String[] args) {
+        String originalText = "Working with texts";
+        char charAtIndex5 = originalText.charAt(5);
+        System.out.println("Symbol of position 5: " + charAtIndex5);
+
+        String concatText = originalText.concat(" and class methods");
+        System.out.println("New text: " + concatText);
+
+        int textLength = originalText.length();
+        System.out.println("Length: " + textLength);
+
+        String substring = originalText.substring(10, 16);
+        System.out.println("Substring: " + substring);
+
+        String[] words = originalText.split(" ");
+        System.out.println("Split text:");
+
+        for (String word : words) {
+            System.out.println(word);
+        }
+        boolean containsExample = originalText.contains("Example");
+        System.out.println("Contains the word Example: " + containsExample);
+
+        String anotherText = "Java is cool";
+        boolean areEqual = originalText.equals(anotherText);
+        System.out.println("The first text and second text equal. " + areEqual);
+
+        int indexOfText = originalText.indexOf("texts");
+        System.out.println("Position of the word texts: " + indexOfText);
+    }
+}
+2.public class StringBuffers {
+    public static void main(String[] args) {
+        StringBuffer buffer = new StringBuffer("Hello");
+
+        buffer.append(" world!");
+
+        buffer.insert(6, " Java");
+
+        buffer.delete(5, 10);
+
+        buffer.replace(0, 5, "Hi");
+
+        buffer.reverse();
+
+        System.out.println("Changing text: " + buffer);
+    }
+}
+3.public class tryandcatch  {
+        public static void main(String[ ] args) {
+            try {
+                int[] myNumbers = {1, 2, 3};
+                System.out.println(myNumbers[10]);
+            } catch (Exception e) {
+                System.out.println("Something went wrong.");
+            }
+        }
+}
+4.public class finallys  {
+    public static void main(String[] args) {
+        try {
+            int[] myNumbers = {1, 2, 3};
+            System.out.println(myNumbers[10]);
+        } catch (Exception e) {
+            System.out.println("Something went wrong.");
+        } finally {
+            System.out.println("The 'try catch' is finished.");
+        }
+    }
+}
+5.//Напишите программу, которая выводит на консоль простые числа в промежутке от [2, 100].
+//Используйте для решения этой задачи оператор "%" (остаток от деления) и циклы.
+public class Program {
+    public static void main(String[] args) {
+        for (int i = 2; i <= 100; i++) {
+            boolean isPrime = true;
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                System.out.println(i);
+            }
+        }
+    }
+}
+6.//Генерация случайного элемента с весом
+//Дан массив [1, 2, 3], и массив весов [1, 2, 10].
+//В среднем, значение «1» должно возвращаться в 2 раза реже, чем значение «2» и в десять раз реже, чем значение «3».
+class RandomFromArray {
+    private int[] values; // значения
+    private int[] weights; // веса
+    private int[] ranges; // левые границы отрезков
+    private int sum; // общая длина всех отрезков
+    public RandomFromArray(int[] values, int[] weights) {
+        this.values = values;
+        this.weights = weights;
+        ranges = new int[values.length];
+
+        // Сумма длин всех отрезков
+        sum = 0;
+        for (int weight : weights) {
+            sum += weight;
+        }
+        // Заполняем ranges, левыми границами
+        int lastSum = 0;
+        for (int i = 0; i < ranges.length; i++) {
+            ranges[i] = lastSum;
+            lastSum += weights[i];
+        }
+    }
+    public int getRandom() {
+        int random = (int) (Math.random() * (sum - 1));
+
+        int ourRangeIndex = 0;
+        for (int i = 0; i < ranges.length; i++) {
+            if (ranges[i] > random) {
+                break;
+            }
+            ourRangeIndex = i;
+        }
+        return values[ourRangeIndex];
+    }
+}
+Использоание класса:
+public class rfa {
+    public static void main(String[] args) {
+        int[] values = {1, 2, 3, 4, 5};
+        int[] weights = {10, 20, 30, 40, 50};
+
+        RandomFromArray randomFromArray = new RandomFromArray(values, weights);
+
+        int randomValue = randomFromArray.getRandom();
+        System.out.println("Случайное значение из массива: " + randomValue);
+    }
+}
+7.//Найти корень уравнения
+public class Sequens {
+    public static double func(double x){
+        return Math.cos(Math.pow(x, 5)) + Math.pow(x, 4) - 345.3 * x - 23;
+    }
+    public static double  solve(double start, double end){
+        if(end - start <= 0.001){
+            return start;
+        }
+        double x = start + (end - start) / 2;
+
+        if(func(start) * func(x) > 0){
+            return solve(x, end);
+        } else {
+            return solve(start, x);
+        }
+    }
+    public static void main(String[] args) {
+        System.out.println(solve(0, 10));
+    }
+}
+8.//Напишите метод, который добавляет 1000000 элементов в ArrayList и LinkedList.
+// Напишите еще один метод, который выбирает из заполненного списка элемент наугад 100000 раз. Замерьте время, которое потрачено на это.
+// Сравните результаты и предположите, почему они именно такие.
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+public class arrray {
+    public static void main(String[] args) {
+        compare2Lists();
+    }
+
+    public static void compare2Lists() {
+        ArrayList<Double> arrayList = new ArrayList<>();
+        LinkedList<Double> linkedList = new LinkedList<>();
+        final int N = 1000000;
+        final int M = 1000;
+        for (int i = 0; i < N; i++) {
+            arrayList.add(Math.random());
+            linkedList.add(Math.random());
+        }
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < M; i++) {
+            arrayList.get((int) (Math.random() * (N - 1)));
+        }
+        System.out.println(System.currentTimeMillis() - startTime);
+
+        startTime = System.currentTimeMillis();
+        for (int i = 0; i < M; i++) {
+            linkedList.get((int) (Math.random() * (N - 1)));
+        }
+        System.out.println(System.currentTimeMillis() - startTime);
+    }
+}
+9.//Поиск простых чисел
+public class present {
+    public static void main(String[] args) {
+        for (int i = 2; i <= 100; i++) {
+            boolean isPrime = true;
+
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime) {
+                System.out.println(i);
+            }
+        }
+    }
+}
+10.//Удаление из массива
+import java.util.Arrays;
+public class deletes {
+    public static void main(String[] args) {
+        int test_array[] = {0,1,2,2,3,0,4,2};
+        System.out.println(Arrays.toString(removeElement(test_array, 3)));
+    }
+
+    public static int[] removeElement(int[] nums, int val) {
+        int offset = 0;
+
+        for(int i = 0; i< nums.length; i++){
+            if(nums[i] == val){
+                offset++;
+            } else{
+                nums[i - offset] = nums[i];
+            }
+        }
+        return Arrays.copyOf(nums, nums.length - offset);
+    }
+}
